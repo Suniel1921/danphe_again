@@ -58,3 +58,39 @@ exports.getOrderCount = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal server error' });
     } 
 };
+
+
+
+
+//payment integration
+
+
+
+const Stripe = require('stripe');
+const stripe = Stripe('sk_test_51PqoUQ08Ir5euo8TAQe16PZKA3tTEgXns08wTFFidXc4SJg9RTh2bSd2yw2N5rKZNaZsoqyuqzoEJVEmFt6YG0Bs002Z30NtyJ'); // Replace with your actual Stripe Secret Key
+
+exports.createPaymentIntent = async (req, res) => {
+    const { amount } = req.body;
+
+    // Ensure amount is in the smallest currency unit (e.g., cents for USD)
+    if (!amount || amount <= 0) {
+        return res.status(400).json({ error: 'Invalid amount' });
+    }
+
+    try {
+        // Create a PaymentIntent
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: amount, // Amount should be in the smallest currency unit
+            currency: 'usd',
+        });
+
+        // Send the client secret to the client
+        res.status(200).json({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } catch (error) {
+        // Handle errors
+        console.error('Error creating payment intent:', error);
+        res.status(500).json({ error: error.message });
+    }
+};

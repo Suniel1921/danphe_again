@@ -25,4 +25,9 @@ routes.get('/yourOrder', requireLogin, controller.getYourOrders);
 routes.put('/updateOrderStatus', requireLogin, controller.updateOrderStatus);
 routes.get('/order-count',requireLogin, controller.getOrderCount); 
 
+routes.post('/create-payment-intent', controller.createPaymentIntent);
+
+
+
+
 module.exports = routes;
