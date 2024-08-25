@@ -245,3 +245,27 @@ exports.resetPassword = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
+
+
+
+
+
+
+
+
+
+
+// Get all users without pagination
+exports.getAllUsers = async (req, res) => {
+    try {
+        // Fetch all users
+        const users = await userAuthModel.find();
+
+        return res.status(200).json({
+            success: true,
+            users,
+        });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+};

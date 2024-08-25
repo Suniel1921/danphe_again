@@ -12,6 +12,7 @@ routes.post('/resetPassword', controller.resetPassword);
 
 routes.get('/protectedRoute', requireLogin, controller.protectedRoute);
 routes.get('/admin', requireLogin, isAdmin, controller.admin);
+routes.get('/all-users', controller.getAllUsers);
 
 
 module.exports = routes
