@@ -156,8 +156,6 @@ exports.verifyOTP = async (req, res) => {
 
 
 
-//forget password
-
 // forgotPassword controller
 exports.forgotPassword = async (req, res) => {
     try {

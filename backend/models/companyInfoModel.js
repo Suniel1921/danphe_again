@@ -50,6 +50,8 @@ const userCompanyInfoSchema = new mongoose.Schema({
     ref: 'UserAuth',
     required: true,
   },
+
+  
 });
 
 module.exports = mongoose.model('UserCompanyInfo', userCompanyInfoSchema);

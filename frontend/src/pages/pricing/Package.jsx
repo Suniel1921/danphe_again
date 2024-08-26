@@ -273,7 +273,7 @@ const Package = () => {
     };
     addToCart(product);
     toast.success('Item added to cart');
-    // navigate('/cart');
+    navigate('/contact-info');
   };
 
   const renderPackageCard = (index) => (

@@ -15,13 +15,12 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'Danphe',  // Optional, folder to upload in Cloudinary
-        allowed_formats: ['jpg', 'jpeg', 'png'],  // Optional, only allow certain file formats
-        transformation: [{ width: 500, height: 500, crop: 'limit' }]  // Optional, resize images
+        folder: 'Danphe',  
+        allowed_formats: ['jpg', 'jpeg', 'png'],  
+        transformation: [{ width: 500, height: 500, crop: 'limit' }] 
     }
 });
 
-// Initialize multer instance with Cloudinary storage engine
 const upload = multer({ storage: storage });
 
 module.exports = upload;

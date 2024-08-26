@@ -59,7 +59,6 @@ exports.contact = async (req, res) => {
 
 
 //create user company information 
-
 exports.createUserCompanyInfo = async (req, res) => {
   try {
     const userId = req.user._id; // Ensure `req.user` is not undefined
@@ -68,6 +67,9 @@ exports.createUserCompanyInfo = async (req, res) => {
       return res.status(400).json({ success: false, message: 'User ID is missing' });
     }
 
+  
+
+    // Create new UserCompanyInfo with orders
     const newInfo = new companyInfoModel({
       ...req.body,
       user: userId,
@@ -76,9 +78,10 @@ exports.createUserCompanyInfo = async (req, res) => {
     await newInfo.save();
     res.status(201).json({ success: true, message: 'Form submitted successfully', data: newInfo });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to submit form', error });
+    res.status(500).json({ success: false, message: `Failed to submit form: ${error.message || error}` });
   }
 };
+
 
 
 

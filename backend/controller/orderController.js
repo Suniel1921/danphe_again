@@ -64,10 +64,9 @@ exports.getOrderCount = async (req, res) => {
 
 //payment integration
 
-
-
 const Stripe = require('stripe');
-const stripe = Stripe('sk_test_51PqoUQ08Ir5euo8TAQe16PZKA3tTEgXns08wTFFidXc4SJg9RTh2bSd2yw2N5rKZNaZsoqyuqzoEJVEmFt6YG0Bs002Z30NtyJ'); // Replace with your actual Stripe Secret Key
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
+
 
 exports.createPaymentIntent = async (req, res) => {
     const { amount } = req.body;
@@ -94,3 +93,8 @@ exports.createPaymentIntent = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+
+
+
